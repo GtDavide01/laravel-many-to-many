@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class TechnologyController extends Controller
 {
@@ -71,9 +72,14 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Technology $technology)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', Rule::unique('technologies')->ignore($technology)]
+        ]);
+        $data['slug'] = Str::slug($data['name']);
+        $technology->update($data);
+        return redirect()->back()->with('message', "Categoria $technology->name è stata aggiornata con successo");
     }
 
     /**
@@ -82,8 +88,9 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        return redirect()->back()->with('message', "Tecnologia $technology->name è stata cancellata");
     }
 }

@@ -42,20 +42,15 @@
                                     </form>
                                 </th>
                                 <td>{{ count($technology->projects) }}</td>
-                                <td class="d-flex">
-                                    <button form="edit-technology-{{ $technology->id }}"
-                                        class="me-2 btn btn-outline-success" href="" type="submit">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-
-                                    <form action="{{ route('admin.technologies.destroy', $technology->slug) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-outline-danger" type="submit">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
+                                <td>
+                                    <a class="btn btn-outline-success"
+                                        href="{{ route('admin.technologies.update', $technology->slug) }}">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger"
+                                        href="{{ route('admin.technologies.destroy', $technology->slug) }}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @empty
