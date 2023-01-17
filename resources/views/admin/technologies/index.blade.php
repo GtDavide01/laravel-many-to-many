@@ -43,14 +43,21 @@
                                 </th>
                                 <td>{{ count($technology->projects) }}</td>
                                 <td>
-                                    <a class="btn btn-outline-success"
-                                        href="{{ route('admin.technologies.update', $technology->slug) }}">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </a>
-                                    <a class="btn btn-outline-danger"
-                                        href="{{ route('admin.technologies.destroy', $technology->slug) }}">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    <form action="{{ route('admin.technologies.update', $technology->slug) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-outline-success" type="submit">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('admin.technologies.destroy', $technology->slug) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-outline-danger" type="submit">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
