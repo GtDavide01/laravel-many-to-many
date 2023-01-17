@@ -9,6 +9,7 @@ class Technology extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug'];
     // Una tecnologia può avere più progetti
     public function projects()
     {

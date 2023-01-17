@@ -74,6 +74,13 @@
                                     Nuovo Progetto
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() === 'admin.technologies.index' ? 'bg-info' : '' }}"
+                                    href="{{ route('admin.technologies.index') }}">
+                                    <i class="fa-solid fa-filter"></i>
+                                    Area tecnologie
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
