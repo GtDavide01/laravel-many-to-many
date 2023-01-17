@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center mt-5">Crea nuovo progetto</h1>
+        <h1 class="text-center mt-5">Crea un nuovo progetto!</h1>
         <div class="row justify-content-center">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -18,10 +18,12 @@
                     @csrf
                     {{-- form titolo --}}
                     <div class="form-group mb-3">
+                        <h5>Titolo</h5>
                         <label for="title">Titolo</label>
                         <input type="text" id="title" name="title" class="form-control">
                     </div>
                     <div class="form-group mb-3">
+                        <h5>Tipologia</h5>
                         <label for="types_id">Tipologia </label>
                         <select name="types_id" id="types_id" class="form-select">
                             <option value="">Nessuna categoria</option>
@@ -31,8 +33,22 @@
                             @endforeach
                         </select>
                     </div>
+                    {{-- form per le technologie --}}
+                    <div class="form-group mb-3">
+                        <h5>Tecnologie usate</h5>
+                        @foreach ($technologies as $technology)
+                            <div class="form-check">
+                                <input type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}"
+                                    class="form-check-input" value="{{ $technology->id }}">
+                                <label for="technology-{{ $technology->id }}"
+                                    class="form-check-label">{{ $technology->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+
                     {{-- form per immagine --}}
                     <div class="form-group mb-3">
+                        <h5>Scegli immagine</h5>
                         <label for="image">Immagine</label>
                         <input type="file" id="image" name="image" class="form-control">
                     </div>
@@ -42,6 +58,7 @@
                     </div>
                     {{-- form per contenuto --}}
                     <div class="form-group mb-3">
+                        <h5>Descrizione progetto</h5>
                         <label for="content">Contenuto</label>
                         <textarea name="content" id="content" rows="10" class="form-control">
                         </textarea>
