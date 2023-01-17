@@ -78,7 +78,7 @@ class TechnologyController extends Controller
         $data = $request->validate([
             'name' => ['required', Rule::unique('technologies')->ignore($technology)]
         ]);
-        $data['slug'] = Str::slug($data['name']);
+        $data['slug'] = Str::slug($data['name'], "-");
         $technology->update($data);
         return redirect()->back()->with('message', "Tecnologia aggiornata con successo");
     }
