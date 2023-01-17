@@ -42,12 +42,12 @@
                                     </form>
                                 </th>
                                 <td>{{ count($technology->projects) }}</td>
-                                <td>
+                                <td class="d-flex">
                                     <form action="{{ route('admin.technologies.update', $technology->slug) }}"
                                         method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <button class="btn btn-outline-success" type="submit">
+                                        <button class=" me-3 btn btn-outline-success" type="submit">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
                                     </form>
