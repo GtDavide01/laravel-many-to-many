@@ -20,7 +20,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::paginate(5);
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -46,7 +46,7 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $data['slug'] = Project::generateSlug($data['title']);
-        // salvo tutto nel database
+        // salvo tutto nel database 
         if ($request->hasFile('image')) {
             $path = Storage::put('images_pro', $request->image);
             $data['image'] = $path;

@@ -83,6 +83,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div>
+                    {{ $projects->links() }}
+                </div>
+
             </div>
         </div>
     @endsection
